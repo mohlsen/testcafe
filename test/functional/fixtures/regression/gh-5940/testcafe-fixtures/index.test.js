@@ -1,10 +1,10 @@
 import { ClientFunction, Selector, t } from 'testcafe';
 
 fixture `Check modifier keys`
-    .page('http://localhost:3000/fixtures/regression/gh-xxx/pages/index.html');
+    .page('http://localhost:3000/fixtures/regression/gh-5940/pages/index.html');
 
 async function uncheckIfNecessary(selector) {
-    if (selector.checked) {
+    if (await selector.checked) {
         return await t.click(selector);
     }
 }
@@ -35,7 +35,7 @@ test('Press the ctrl++ key combo', async t => {
     await uncheckIfNecessary(selector);
 
     await t.pressKey('ctrl+\+');
-    await t.expect(selector.checked).eql(true);
+    await t.expect(selector.checked).eql(false);
 
     await uncheckIfNecessary(selector);
 
@@ -72,7 +72,7 @@ test('Press the + key', async t => {
     await uncheckIfNecessary(selector);
 
     await t.pressKey('\+');
-    await t.expect(selector.checked).eql(true);
+    await t.expect(selector.checked).eql(false);
 
     await uncheckIfNecessary(selector);
 
@@ -91,7 +91,7 @@ test('Press the alt++ key combo', async t => {
     await uncheckIfNecessary(selector);
 
     await t.pressKey('alt+\+');
-    await t.expect(selector.checked).eql(true);
+    await t.expect(selector.checked).eql(false);
 
     await uncheckIfNecessary(selector);
 
